@@ -1,15 +1,15 @@
 # 知序：企业知识问答 Agent
-需要 Python 3.10+，无第三方依赖（见 `requirements.txt`）。在项目根目录运行 `python src/server.py`，访问 http://127.0.0.1:8000；测试：`python -m unittest discover -s tests -v`。默认离线演示。真实模型配置可复制 `.env.example` 为 `.env` 并填写密钥，也可通过环境变量设置。支持原项目的 `DEEPSEEK_*`、`RELAY_*`，用 `LLM_PROVIDER=deepseek`（默认）或 `relay` 选择。环境变量优先于文件。
+需要 Python 3.10+，无第三方依赖（见 `requirements.txt`）。在项目根目录运行 `python src/server.py`，访问 http://127.0.0.1:8000；测试：`python -m unittest discover -s tests -v`。默认离线演示。真实模型配置可复制 `.env.example` 为 `.env` 并填写密钥，也可通过环境变量设置。支持 `DEEPSEEK_*`、`RELAY_*`，用 `LLM_PROVIDER=deepseek`（默认）或 `relay` 选择。环境变量优先于文件。
 
-在本机复用原项目配置时，在本项目目录运行：
+在 Windows PowerShell 中配置并启动真实模型模式：
 
 ```powershell
-$env:KNOWLEDGE_ENV_FILE = (Resolve-Path '..\.env').Path
-$env:LLM_PROVIDER = 'relay' # 或 deepseek
+Copy-Item .env.example .env
+# 编辑 .env，填写所选服务的密钥并设置 LLM_PROVIDER。
 python src/server.py
 ```
 
-这是显式引用原项目配置，密钥不会复制进本项目。独立交付时应自行配置 `.env`。参考原项目 backend/app/retrieval、verifier_agent 及 llm/client.py。资料为合成数据。离线模式仅验证流程，不能证明真实模型决策。真实模型记录见 `examples/real-runs.json`；最终事实以已读取原文的逐字摘录输出，但相关性与冲突的语义判断仍有局限；本地服务仅供演示。实际投入约 3 小时。项目题目为企业知识问答 Agent；题号以考核方提供的信息为准。仓库地址：https://github.com/liming600/enterprise-knowledge-agent 。最终 commit SHA 可在仓库中运行 `git rev-parse HEAD` 查看。
+请勿提交填写了密钥的 `.env`。资料为合成数据。离线模式仅验证流程，不能证明真实模型决策。真实模型记录见 `examples/real-runs.json`；最终事实以已读取原文的逐字摘录输出，但相关性与冲突的语义判断仍有局限；本地服务仅供演示。实际投入约 3 小时。项目题目为企业知识问答 Agent；题号以考核方提供的信息为准。仓库地址：https://github.com/liming600/enterprise-knowledge-agent 。最终 commit SHA 可在仓库中运行 `git rev-parse HEAD` 查看。
 
 ## 身份、知识库与记忆
 

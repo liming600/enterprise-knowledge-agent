@@ -1,4 +1,4 @@
-"""OpenAI-compatible chat client, following the parent project's LLM settings."""
+"""OpenAI-compatible chat client with configurable providers."""
 import json
 import os
 import re

@@ -1,0 +1,1127 @@
+[
+  {
+    "input": {
+      "name": "明确答案",
+      "question": "年假制度是怎样规定的？",
+      "docs": [
+        {
+          "id": "D03",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "text": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "expected": [
+        "completed"
+      ],
+      "must_include": [
+        "5天"
+      ]
+    },
+    "output": {
+      "status": "completed",
+      "answer": "根据已读取的资料，相关原文如下：\n【D03 · 2025-01-01】员工工作满一年后享有5天带薪年假。",
+      "citations": [
+        {
+          "id": "D03",
+          "chunk_id": "D03:0",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "version": null,
+          "snippet": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "gaps": [],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "年假制度 年休假 规定",
+          "reason": "需要先检索相关制度文档，再读取原文确认年假规定",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D03",
+          "reason": "检索结果显示D03为年假制度相关文档，需要读取原文确认完整规定",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "根据已读取的《年假制度》（D03），员工工作满一年后享有5天带薪年假。",
+          "reason": "已读取到年假制度原文，信息足以回答问题",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 1,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 26.23
+  },
+  {
+    "input": {
+      "name": "报销冲突",
+      "question": "报销期限多久？",
+      "docs": [
+        {
+          "id": "D01",
+          "title": "差旅报销制度",
+          "date": "2025-01-01",
+          "text": "员工差旅费用应在发生后30天内提交报销。"
+        },
+        {
+          "id": "D02",
+          "title": "费用报销规定",
+          "date": "2025-02-01",
+          "text": "员工费用应在发生后15天内提交报销。"
+        }
+      ],
+      "expected": [
+        "conflict"
+      ],
+      "must_include": [
+        "30天",
+        "15天"
+      ]
+    },
+    "output": {
+      "status": "conflict",
+      "answer": "资料可能存在冲突或适用条件不同，无法确定唯一结论：\n【D01 · 2025-01-01】员工差旅费用应在发生后30天内提交报销。\n【D02 · 2025-02-01】员工费用应在发生后15天内提交报销。\n请确认适用范围或提供优先级依据。",
+      "citations": [
+        {
+          "id": "D01",
+          "chunk_id": "D01:0",
+          "title": "差旅报销制度",
+          "date": "2025-01-01",
+          "version": null,
+          "snippet": "员工差旅费用应在发生后30天内提交报销。"
+        },
+        {
+          "id": "D02",
+          "chunk_id": "D02:0",
+          "title": "费用报销规定",
+          "date": "2025-02-01",
+          "version": null,
+          "snippet": "员工费用应在发生后15天内提交报销。"
+        }
+      ],
+      "gaps": [
+        "缺少适用范围或优先级依据"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "报销期限",
+          "reason": "需要先检索与报销期限相关的制度文档",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "差旅报销制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工差旅费用应在发生后30天内提交报销。"
+            },
+            {
+              "id": "D02",
+              "chunk_id": "D02:0",
+              "title": "费用报销规定",
+              "date": "2025-02-01",
+              "version": null,
+              "snippet": "员工费用应在发生后15天内提交报销。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D01,D02",
+          "reason": "搜索结果显示报销期限可能因制度不同存在差异，需要读取候选原文确认适用范围",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "差旅报销制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工差旅费用应在发生后30天内提交报销。"
+            },
+            {
+              "id": "D02",
+              "chunk_id": "D02:0",
+              "title": "费用报销规定",
+              "date": "2025-02-01",
+              "version": null,
+              "snippet": "员工费用应在发生后15天内提交报销。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "报销期限需区分费用类型：差旅费用应在发生后30天内提交报销（D01）；一般员工费用应在发生后15天内提交报销（D02）。如你的问题指的是具体某类费用，请补充费用类型以便进一步确认。",
+          "reason": "已读取D01和D02，二者适用范围不同，需按费用类型区分",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 2,
+        "chunks": 2
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 13.08
+  },
+  {
+    "input": {
+      "name": "改写冲突",
+      "question": "报账最晚需要几天内提交？",
+      "docs": [
+        {
+          "id": "D01",
+          "title": "差旅报销制度",
+          "date": "2025-01-01",
+          "text": "员工差旅费用应在发生后30天内提交报销。"
+        },
+        {
+          "id": "D02",
+          "title": "费用报销规定",
+          "date": "2025-02-01",
+          "text": "员工费用应在发生后15天内提交报销。"
+        }
+      ],
+      "expected": [
+        "conflict"
+      ],
+      "must_include": [
+        "30天",
+        "15天"
+      ]
+    },
+    "output": {
+      "status": "conflict",
+      "answer": "资料可能存在冲突或适用条件不同，无法确定唯一结论：\n【D02 · 2025-02-01】员工费用应在发生后15天内提交报销。\n【D01 · 2025-01-01】员工差旅费用应在发生后30天内提交报销。\n请确认适用范围或提供优先级依据。",
+      "citations": [
+        {
+          "id": "D02",
+          "chunk_id": "D02:0",
+          "title": "费用报销规定",
+          "date": "2025-02-01",
+          "version": null,
+          "snippet": "员工费用应在发生后15天内提交报销。"
+        },
+        {
+          "id": "D01",
+          "chunk_id": "D01:0",
+          "title": "差旅报销制度",
+          "date": "2025-01-01",
+          "version": null,
+          "snippet": "员工差旅费用应在发生后30天内提交报销。"
+        }
+      ],
+      "gaps": [
+        "缺少适用范围或优先级依据"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "报账 最晚 几天内 提交",
+          "reason": "需要先检索相关制度原文以确认报账提交时限",
+          "result": [
+            {
+              "id": "D02",
+              "chunk_id": "D02:0",
+              "title": "费用报销规定",
+              "date": "2025-02-01",
+              "version": null,
+              "snippet": "员工费用应在发生后15天内提交报销。"
+            },
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "差旅报销制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工差旅费用应在发生后30天内提交报销。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D02,D01",
+          "reason": "搜索结果存在不同报账时限，需读取候选原文确认适用范围和是否冲突",
+          "result": [
+            {
+              "id": "D02",
+              "chunk_id": "D02:0",
+              "title": "费用报销规定",
+              "date": "2025-02-01",
+              "version": null,
+              "snippet": "员工费用应在发生后15天内提交报销。"
+            },
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "差旅报销制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工差旅费用应在发生后30天内提交报销。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "根据已读取文档，报账提交时限存在适用范围差异：一般员工费用应在发生后15天内提交报销（D02）；差旅费用应在发生后30天内提交报销（D01）。如果你问的是一般费用，最晚15天内；如果是差旅费用，最晚30天内。",
+          "reason": "已读取D02和D01，分别规定一般费用和差旅费用的提交时限",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 2,
+        "chunks": 2
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 27.17
+  },
+  {
+    "input": {
+      "name": "上下文追问",
+      "question": "那是多少天？",
+      "history": [
+        "请问公司年假制度是什么？"
+      ],
+      "docs": [
+        {
+          "id": "D03",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "text": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "expected": [
+        "completed"
+      ],
+      "must_include": [
+        "5天"
+      ]
+    },
+    "output": {
+      "status": "completed",
+      "answer": "根据已读取的资料，相关原文如下：\n【D03 · 2025-01-01】员工工作满一年后享有5天带薪年假。",
+      "citations": [
+        {
+          "id": "D03",
+          "chunk_id": "D03:0",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "version": null,
+          "snippet": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "gaps": [],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "公司 年假 制度 年假天数",
+          "reason": "问题承接上一轮年假制度，需要先检索相关制度文档确认年假天数",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D03",
+          "reason": "检索结果包含年假天数信息，需要读取原文确认",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "员工工作满一年后享有5天带薪年假，因此是 5 天。依据：D03。",
+          "reason": "已读取年假制度原文并确认天数",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 1,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 9.77
+  },
+  {
+    "input": {
+      "name": "资料不足",
+      "question": "公司产假和生育津贴如何规定？",
+      "docs": [
+        {
+          "id": "D03",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "text": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "expected": [
+        "insufficient",
+        "incomplete",
+        "needs_clarification"
+      ],
+      "must_include": []
+    },
+    "output": {
+      "status": "insufficient",
+      "answer": "资料不足，未找到可核验的原文，请补充相关资料。",
+      "citations": [],
+      "gaps": [
+        "缺少可核验原文"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "产假 生育津贴 规定",
+          "reason": "需要先检索相关制度文件，再读取候选原文以确认规定",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "search",
+          "argument": "生育 产假 津贴",
+          "reason": "首次检索结果仅为年假制度，与问题不匹配，需要调整关键词继续检索",
+          "result": []
+        },
+        {
+          "step": 3,
+          "action": "search",
+          "argument": "女员工 产假 生育保险 待遇",
+          "reason": "未检索到结果，继续使用同义关键词检索相关制度",
+          "result": [
+            {
+              "id": "D03",
+              "chunk_id": "D03:0",
+              "title": "年假制度",
+              "date": "2025-01-01",
+              "version": null,
+              "snippet": "员工工作满一年后享有5天带薪年假。"
+            }
+          ]
+        },
+        {
+          "step": 4,
+          "action": "finish",
+          "argument": "未能在检索结果中找到公司关于产假或生育津贴的相关制度文件。已检索“产假 生育津贴 规定”“生育 产假 津贴”“女员工 产假 生育保险 待遇”，仅返回与问题无关的《年假制度》（D03，未读取原文且摘要仅涉及年假）。因此无法依据公司制度回答产假和生育津贴如何规定；建议补充相关制度文件或提供更准确的文件名称/关键词后再查询。",
+          "reason": "多次检索未找到相关候选原文，无法读取并引用制度依据",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 0,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 18.24
+  },
+  {
+    "input": {
+      "name": "工具故障",
+      "question": "年假有多少天？",
+      "docs": [
+        {
+          "id": "D03",
+          "title": "年假制度",
+          "date": "2025-01-01",
+          "text": "员工工作满一年后享有5天带薪年假。"
+        }
+      ],
+      "fail": true,
+      "expected": [
+        "tool_error",
+        "incomplete"
+      ],
+      "must_include": []
+    },
+    "output": {
+      "status": "tool_error",
+      "answer": "工具调用失败，无法核验资料，请稍后重试。",
+      "citations": [],
+      "gaps": [
+        "工具调用失败"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "年假 天数 年休假 假期",
+          "reason": "需要先检索与年假天数相关的制度文档",
+          "result": {
+            "error": "工具调用失败，无法获取资料"
+          }
+        },
+        {
+          "step": 2,
+          "action": "search",
+          "argument": "年休假 天数 带薪年假 年假规定",
+          "reason": "首次检索工具失败，调整关键词后重试以获取制度资料",
+          "result": {
+            "error": "工具调用失败，无法获取资料"
+          }
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "抱歉，当前检索工具连续失败，无法获取并读取公司年假制度原文，因此不能确认年假有多少天。请稍后重试，或提供相关制度文档/截图后我再依据原文回答。",
+          "reason": "工具连续失败且无已读取文档，无法依据制度事实作答",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {}
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 8.42
+  },
+  {
+    "input": {
+      "name": "替换前",
+      "question": "报销期限是多少天？",
+      "docs": [
+        {
+          "id": "D01",
+          "title": "报销制度",
+          "date": "2026-01-01",
+          "text": "报销期限为30天。"
+        }
+      ],
+      "expected": [
+        "completed"
+      ],
+      "must_include": [
+        "30天"
+      ]
+    },
+    "output": {
+      "status": "completed",
+      "answer": "根据已读取的资料，相关原文如下：\n【D01 · 2026-01-01】报销期限为30天。",
+      "citations": [
+        {
+          "id": "D01",
+          "chunk_id": "D01:0",
+          "title": "报销制度",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "报销期限为30天。"
+        }
+      ],
+      "gaps": [],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "报销期限 多少天",
+          "reason": "需要先检索相关制度文档以确认报销期限",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "报销制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "报销期限为30天。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D01",
+          "reason": "搜索结果显示报销制度包含报销期限，需要读取原文确认",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "报销制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "报销期限为30天。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "报销期限为30天。依据：D01。",
+          "reason": "已读取报销制度原文并确认期限",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 1,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 10.09
+  },
+  {
+    "input": {
+      "name": "替换后",
+      "question": "报销期限是多少天？",
+      "docs": [
+        {
+          "id": "D01",
+          "title": "报销制度",
+          "date": "2026-01-01",
+          "text": "报销期限为45天。"
+        }
+      ],
+      "expected": [
+        "completed"
+      ],
+      "must_include": [
+        "45天"
+      ]
+    },
+    "output": {
+      "status": "completed",
+      "answer": "根据已读取的资料，相关原文如下：\n【D01 · 2026-01-01】报销期限为45天。",
+      "citations": [
+        {
+          "id": "D01",
+          "chunk_id": "D01:0",
+          "title": "报销制度",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "报销期限为45天。"
+        }
+      ],
+      "gaps": [],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "报销期限 多少天",
+          "reason": "需要先检索相关制度文档以确定报销期限",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "报销制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "报销期限为45天。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D01",
+          "reason": "搜索结果显示该文档包含报销期限，需要读取原文确认",
+          "result": [
+            {
+              "id": "D01",
+              "chunk_id": "D01:0",
+              "title": "报销制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "报销期限为45天。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "报销期限为45天。依据：D01。",
+          "reason": "已读取制度原文并确认报销期限",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 1,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 11.29
+  },
+  {
+    "input": {
+      "name": "其他数值冲突",
+      "question": "试用期有多长？",
+      "docs": [
+        {
+          "id": "D11",
+          "title": "试用期制度",
+          "date": "2026-01-01",
+          "text": "试用期为三个月。"
+        },
+        {
+          "id": "D12",
+          "title": "试用期规定",
+          "date": "2026-01-01",
+          "text": "试用期为六个月。"
+        }
+      ],
+      "expected": [
+        "conflict"
+      ],
+      "must_include": [
+        "三个月",
+        "六个月"
+      ]
+    },
+    "output": {
+      "status": "conflict",
+      "answer": "资料可能存在冲突或适用条件不同，无法确定唯一结论：\n【D11 · 2026-01-01】试用期为三个月。\n【D12 · 2026-01-01】试用期为六个月。\n请确认适用范围或提供优先级依据。",
+      "citations": [
+        {
+          "id": "D11",
+          "chunk_id": "D11:0",
+          "title": "试用期制度",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "试用期为三个月。"
+        },
+        {
+          "id": "D12",
+          "chunk_id": "D12:0",
+          "title": "试用期规定",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "试用期为六个月。"
+        }
+      ],
+      "gaps": [
+        "缺少适用范围或优先级依据"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "试用期 多长",
+          "reason": "需要先检索相关制度文档以确认试用期规定",
+          "result": [
+            {
+              "id": "D11",
+              "chunk_id": "D11:0",
+              "title": "试用期制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "试用期为三个月。"
+            },
+            {
+              "id": "D12",
+              "chunk_id": "D12:0",
+              "title": "试用期规定",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "试用期为六个月。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D11,D12",
+          "reason": "检索结果存在试用期时长冲突，需要读取候选原文核对",
+          "result": [
+            {
+              "id": "D11",
+              "chunk_id": "D11:0",
+              "title": "试用期制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "试用期为三个月。"
+            },
+            {
+              "id": "D12",
+              "chunk_id": "D12:0",
+              "title": "试用期规定",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "试用期为六个月。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "无法确定试用期具体时长：已读取文档存在冲突。D11《试用期制度》写明“试用期为三个月”；D12《试用期规定》写明“试用期为六个月”。两份文档日期相同（2026-01-01），且未提供版本信息，无法判断哪份优先适用。请提供适用岗位、员工类型或有效制度优先级后再确认。",
+          "reason": "已读取原文但同日期无版本信息且内容冲突，不能自行选择",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 2,
+        "chunks": 2
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 10.83
+  },
+  {
+    "input": {
+      "name": "允许与禁止冲突",
+      "question": "是否允许远程办公？",
+      "docs": [
+        {
+          "id": "D21",
+          "title": "远程办公制度",
+          "date": "2026-01-01",
+          "text": "员工可以远程办公。"
+        },
+        {
+          "id": "D22",
+          "title": "远程办公规定",
+          "date": "2026-01-01",
+          "text": "员工不得远程办公。"
+        }
+      ],
+      "expected": [
+        "conflict"
+      ],
+      "must_include": [
+        "可以远程办公",
+        "不得远程办公"
+      ]
+    },
+    "output": {
+      "status": "conflict",
+      "answer": "资料可能存在冲突或适用条件不同，无法确定唯一结论：\n【D21 · 2026-01-01】员工可以远程办公。\n【D22 · 2026-01-01】员工不得远程办公。\n请确认适用范围或提供优先级依据。",
+      "citations": [
+        {
+          "id": "D21",
+          "chunk_id": "D21:0",
+          "title": "远程办公制度",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "员工可以远程办公。"
+        },
+        {
+          "id": "D22",
+          "chunk_id": "D22:0",
+          "title": "远程办公规定",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "员工不得远程办公。"
+        }
+      ],
+      "gaps": [
+        "缺少适用范围或优先级依据"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "远程办公 居家办公 办公地点 管理制度",
+          "reason": "需要先检索相关制度文件以确认是否允许远程办公",
+          "result": [
+            {
+              "id": "D21",
+              "chunk_id": "D21:0",
+              "title": "远程办公制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "员工可以远程办公。"
+            },
+            {
+              "id": "D22",
+              "chunk_id": "D22:0",
+              "title": "远程办公规定",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "员工不得远程办公。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D21,D22",
+          "reason": "搜索结果存在相互冲突的候选制度，需要读取原文确认内容与适用条件",
+          "result": [
+            {
+              "id": "D21",
+              "chunk_id": "D21:0",
+              "title": "远程办公制度",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "员工可以远程办公。"
+            },
+            {
+              "id": "D22",
+              "chunk_id": "D22:0",
+              "title": "远程办公规定",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "员工不得远程办公。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "无法确定是否允许远程办公：已读取的文档存在直接冲突。D21《远程办公制度》称“员工可以远程办公”；D22《远程办公规定》称“员工不得远程办公”。两份文档日期均为 2026-01-01，且未提供版本或优先级信息，因此不能自行选择其一。请提供适用部门/岗位、制度优先级或最新有效文件以确认。引用：D21、D22。",
+          "reason": "原文内容冲突且缺少可判定优先级的信息，必须说明冲突并追问",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 2,
+        "chunks": 2
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 10.97
+  },
+  {
+    "input": {
+      "name": "单文档语义冲突",
+      "question": "年假安排由谁决定？",
+      "docs": [
+        {
+          "id": "D31",
+          "title": "年假安排",
+          "date": "2026-01-01",
+          "text": "年假安排由部门统一决定。年假安排由员工自行决定。"
+        }
+      ],
+      "expected": [
+        "conflict",
+        "needs_clarification"
+      ],
+      "must_include": [
+        "部门统一决定",
+        "员工自行决定"
+      ]
+    },
+    "output": {
+      "status": "conflict",
+      "answer": "模型提示资料可能存在冲突，尚不能确定适用规则：\n【D31 · 2026-01-01】年假安排由部门统一决定。年假安排由员工自行决定。\n请确认适用范围或提供优先级依据。",
+      "citations": [
+        {
+          "id": "D31",
+          "chunk_id": "D31:0",
+          "title": "年假安排",
+          "date": "2026-01-01",
+          "version": null,
+          "snippet": "年假安排由部门统一决定。年假安排由员工自行决定。"
+        }
+      ],
+      "gaps": [
+        "资料可能冲突，需进一步核实"
+      ],
+      "trace": [
+        {
+          "step": 1,
+          "action": "search",
+          "argument": "年假安排 由谁决定 年假 休假安排",
+          "reason": "需要先检索相关制度文件，确认年假安排的决定主体。",
+          "result": [
+            {
+              "id": "D31",
+              "chunk_id": "D31:0",
+              "title": "年假安排",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "年假安排由部门统一决定。年假安排由员工自行决定。"
+            }
+          ]
+        },
+        {
+          "step": 2,
+          "action": "read",
+          "argument": "D31",
+          "reason": "检索结果显示同一文件内存在可能冲突表述，需要读取原文确认上下文。",
+          "result": [
+            {
+              "id": "D31",
+              "chunk_id": "D31:0",
+              "title": "年假安排",
+              "date": "2026-01-01",
+              "version": null,
+              "snippet": "年假安排由部门统一决定。年假安排由员工自行决定。"
+            }
+          ]
+        },
+        {
+          "step": 3,
+          "action": "finish",
+          "argument": "无法确定年假安排由谁决定：已读取的《年假安排》（D31）同时写明“年假安排由部门统一决定”和“年假安排由员工自行决定”，内容相互冲突。请提供更新版本或明确以哪条规则为准。",
+          "reason": "已读取原文但存在冲突，不能自行选择其一。",
+          "result": "结束"
+        }
+      ],
+      "mode": "real",
+      "retrieval": {
+        "vector": "dense_embedding",
+        "reason": "远程语义向量",
+        "bm25_candidates": 1,
+        "chunks": 1
+      }
+    },
+    "checks": {
+      "status_matches": true,
+      "required_terms_present": true,
+      "citations_match_source": true,
+      "citation_metadata_matches": true,
+      "answer_contains_cited_text": true,
+      "has_trace": true
+    },
+    "elapsed_seconds": 12.99
+  }
+]
